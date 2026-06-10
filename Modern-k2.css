@@ -708,3 +708,70 @@ body,
     display: none !important;
     visibility: hidden !important;
 }
+/* =====================================================
+   HARD FIX: RESPECT K2 VISIBLE = FALSE
+   Keep this as the LAST block in the CSS file
+   ===================================================== */
+
+/* Hide anything K2 marks hidden by attributes */
+.theme-entry [hidden],
+.theme-entry [aria-hidden="true"],
+.theme-entry [data-hidden="true"],
+.theme-entry [data-visible="false"],
+.theme-entry [visible="false"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Hide common K2 hidden wrapper classes */
+.theme-entry .hidden,
+.theme-entry .hide,
+.theme-entry .invisible,
+.theme-entry .not-visible,
+.theme-entry .runtime-hidden,
+.theme-entry .control-hidden,
+.theme-entry .formcontrol-hidden,
+.theme-entry .SourceCode-Forms-Controls-Web-Control-hidden,
+.theme-entry .SFC.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* If K2 hides parent rows/cells, make sure children do not reappear */
+.theme-entry tr[style*="display: none"],
+.theme-entry td[style*="display: none"],
+.theme-entry div[style*="display: none"],
+.theme-entry span[style*="display: none"],
+.theme-entry tr[style*="display:none"],
+.theme-entry td[style*="display:none"],
+.theme-entry div[style*="display:none"],
+.theme-entry span[style*="display:none"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Undo our previous forced display for controls inside hidden containers */
+.theme-entry [hidden] input,
+.theme-entry [hidden] textarea,
+.theme-entry [hidden] select,
+.theme-entry [aria-hidden="true"] input,
+.theme-entry [aria-hidden="true"] textarea,
+.theme-entry [aria-hidden="true"] select,
+.theme-entry [data-visible="false"] input,
+.theme-entry [data-visible="false"] textarea,
+.theme-entry [data-visible="false"] select,
+.theme-entry .hidden input,
+.theme-entry .hidden textarea,
+.theme-entry .hidden select,
+.theme-entry .hide input,
+.theme-entry .hide textarea,
+.theme-entry .hide select,
+.theme-entry .invisible input,
+.theme-entry .invisible textarea,
+.theme-entry .invisible select,
+.theme-entry .control-hidden input,
+.theme-entry .control-hidden textarea,
+.theme-entry .control-hidden select {
+    display: none !important;
+    visibility: hidden !important;
+}
