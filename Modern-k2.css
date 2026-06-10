@@ -556,3 +556,42 @@ body,
     display: none !important;
     visibility: hidden !important;
 }
+/* =====================================================
+   CONSISTENT TEXTAREA BORDER FIX
+   Keep only one clean border for memo fields
+   ===================================================== */
+
+/* Remove border from K2 wrapper around textareas */
+.theme-entry .input-control:has(textarea),
+.theme-entry .text-input:has(textarea),
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea),
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea) {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+}
+
+/* Textarea itself gets the same border as normal text boxes */
+.theme-entry textarea,
+.theme-entry textarea.SFC,
+.theme-entry .input-control textarea,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea textarea,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea textarea {
+    border: 1px solid #dbe2ea !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    outline: none !important;
+    min-height: 90px !important;
+    padding: 8px 12px !important;
+    color: #1e293b !important;
+    box-sizing: border-box !important;
+}
+
+/* Textarea focus should match small text boxes */
+.theme-entry textarea:focus,
+.theme-entry .input-control textarea:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
+}
