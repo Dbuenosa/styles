@@ -1,7 +1,12 @@
 /* =====================================================
    NINTEX K2 FIVE - MODERN STYLE PROFILE
-   Safe version: respects K2 Visible = false rules
+   Safe consistent version
+   - Keeps hidden K2 controls hidden
+   - Consistent borders for small inputs, date fields, and textareas
+   - Blue buttons
+   - Centered card layout
    ===================================================== */
+
 
 /* =====================================================
    DESIGN TOKENS
@@ -33,6 +38,7 @@
     --k2-transition: 0.2s ease;
 }
 
+
 /* =====================================================
    GLOBAL PAGE
    ===================================================== */
@@ -54,6 +60,7 @@ body,
     margin: 24px auto !important;
     background: var(--k2-surface) !important;
 }
+
 
 /* =====================================================
    VIEW / CARD CONTAINER
@@ -99,6 +106,7 @@ body,
     font-weight: 600 !important;
 }
 
+
 /* =====================================================
    REMOVE K2 INTERNAL DOUBLE LINES
    ===================================================== */
@@ -121,7 +129,7 @@ body,
     box-shadow: none !important;
 }
 
-/* Remove K2 wrapper underlines but DO NOT force display */
+/* Remove K2 wrapper underlines but do not force display */
 .theme-entry .input-control,
 .theme-entry .input-control-m,
 .theme-entry .input-control-m-c,
@@ -134,9 +142,10 @@ body,
     box-shadow: none !important;
 }
 
+
 /* =====================================================
    CONSISTENT INPUT WRAPPERS
-   IMPORTANT: no display:block !important here.
+   No display:block !important here.
    This avoids re-showing hidden K2 controls.
    ===================================================== */
 
@@ -148,12 +157,13 @@ body,
     width: 100% !important;
     min-height: 40px !important;
     background: #ffffff !important;
-    border: 1px solid var(--k2-border) !important;
+    border: 2px solid var(--k2-border) !important;
     border-radius: var(--k2-radius) !important;
     box-shadow: none !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
 }
+
 
 /* =====================================================
    NORMAL EDITABLE INPUTS
@@ -185,8 +195,11 @@ body,
     box-sizing: border-box !important;
 }
 
+
 /* =====================================================
    TEXT AREAS / MEMO FIELDS
+   Border only on visible textarea/wrapper.
+   Weight matches small input fields.
    ===================================================== */
 
 .theme-entry textarea,
@@ -196,10 +209,10 @@ body,
 .theme-entry .input-control textarea {
     width: 100% !important;
     min-height: 90px !important;
-    padding: 12px 14px !important;
+    padding: 8px 12px !important;
 
     background: #ffffff !important;
-    border: 1px solid var(--k2-border) !important;
+    border: 2px solid var(--k2-border) !important;
     border-radius: var(--k2-radius) !important;
 
     color: var(--k2-text) !important;
@@ -214,12 +227,17 @@ body,
     transition: var(--k2-transition) !important;
 }
 
-/* Remove wrapper border if it contains textarea, to avoid double border */
-.theme-entry .input-control:has(textarea) {
+/* Remove wrapper border if it contains textarea to avoid double border */
+.theme-entry .input-control:has(textarea),
+.theme-entry .text-input:has(textarea),
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea),
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea) {
     border: none !important;
     background: transparent !important;
+    box-shadow: none !important;
     overflow: visible !important;
 }
+
 
 /* =====================================================
    SELECT / DROPDOWN
@@ -233,7 +251,7 @@ body,
     padding: 8px 12px !important;
 
     background: #ffffff !important;
-    border: 1px solid var(--k2-border) !important;
+    border: 2px solid var(--k2-border) !important;
     border-radius: var(--k2-radius) !important;
 
     color: var(--k2-text) !important;
@@ -244,6 +262,7 @@ body,
     outline: none !important;
     box-sizing: border-box !important;
 }
+
 
 /* =====================================================
    WATERMARK / PLACEHOLDER
@@ -266,6 +285,7 @@ body,
     font-weight: 400 !important;
 }
 
+
 /* =====================================================
    FOCUS STATE
    ===================================================== */
@@ -276,15 +296,18 @@ body,
 .theme-entry textarea:focus,
 .theme-entry select:focus {
     border-color: var(--k2-primary) !important;
-    box-shadow: 0 0 0 4px var(--k2-primary-focus) !important;
+    box-shadow: 0 0 0 3px var(--k2-primary-focus) !important;
     outline: none !important;
 }
 
 /* Do not double-focus textarea wrappers */
-.theme-entry .input-control:has(textarea):focus-within {
+.theme-entry .input-control:has(textarea):focus-within,
+.theme-entry .text-input:has(textarea):focus-within,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea):focus-within {
     border: none !important;
     box-shadow: none !important;
 }
+
 
 /* =====================================================
    DATE PICKER
@@ -298,7 +321,7 @@ body,
     width: 100% !important;
     min-height: 40px !important;
     background: #ffffff !important;
-    border: 1px solid var(--k2-border) !important;
+    border: 2px solid var(--k2-border) !important;
     border-radius: var(--k2-radius) !important;
     box-shadow: none !important;
     overflow: hidden !important;
@@ -332,6 +355,71 @@ body,
     background: transparent !important;
 }
 
+
+/* =====================================================
+   UNIFY FIELD BORDER WEIGHT
+   Final consistency layer for all visible fields
+   ===================================================== */
+
+.theme-entry .input-control,
+.theme-entry .text-input,
+.theme-entry .picker-input,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox,
+.theme-entry .calendar-control,
+.theme-entry .date-control,
+.theme-entry .input-control.datepicker,
+.theme-entry textarea,
+.theme-entry textarea.SFC,
+.theme-entry .input-control textarea,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea textarea,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea textarea {
+    border: 2px solid var(--k2-border) !important;
+    border-radius: var(--k2-radius) !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+}
+
+/* Keep inner small inputs clean */
+.theme-entry .input-control input,
+.theme-entry .text-input input,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox input,
+.theme-entry .calendar-control input,
+.theme-entry .date-control input,
+.theme-entry .input-control.datepicker input {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Avoid double border on textarea wrappers */
+.theme-entry .input-control:has(textarea),
+.theme-entry .text-input:has(textarea),
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea),
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea) {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+}
+
+/* Focus state for all visible fields */
+.theme-entry .input-control:focus-within,
+.theme-entry .text-input:focus-within,
+.theme-entry .picker-input:focus-within,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox:focus-within,
+.theme-entry .calendar-control:focus-within,
+.theme-entry .date-control:focus-within,
+.theme-entry .input-control.datepicker:focus-within,
+.theme-entry textarea:focus {
+    border-color: var(--k2-primary) !important;
+    box-shadow: 0 0 0 3px var(--k2-primary-focus) !important;
+}
+
+
 /* =====================================================
    LABELS
    ===================================================== */
@@ -344,6 +432,7 @@ body,
     font-weight: 500 !important;
     font-size: 14px !important;
 }
+
 
 /* =====================================================
    BUTTONS
@@ -395,6 +484,7 @@ body,
     transform: none !important;
 }
 
+
 /* =====================================================
    FILE UPLOAD
    ===================================================== */
@@ -408,6 +498,7 @@ body,
     color: var(--k2-muted) !important;
     padding: 16px !important;
 }
+
 
 /* =====================================================
    GRID / LIST VIEW
@@ -435,6 +526,7 @@ body,
     background: #f8fbff !important;
 }
 
+
 /* =====================================================
    TABS
    ===================================================== */
@@ -457,6 +549,7 @@ body,
     font-weight: 600 !important;
 }
 
+
 /* =====================================================
    VALIDATION
    ===================================================== */
@@ -471,6 +564,7 @@ body,
     font-size: 12px !important;
     margin-top: 4px !important;
 }
+
 
 /* =====================================================
    RESPONSIVE
@@ -496,6 +590,7 @@ body,
         min-height: 120px !important;
     }
 }
+
 
 /* =====================================================
    CRITICAL FINAL BLOCK:
@@ -555,88 +650,4 @@ body,
 .theme-entry .control-hidden * {
     display: none !important;
     visibility: hidden !important;
-}
-/* =====================================================
-   CONSISTENT TEXTAREA BORDER FIX
-   Keep only one clean border for memo fields
-   ===================================================== */
-
-/* Remove border from K2 wrapper around textareas */
-.theme-entry .input-control:has(textarea),
-.theme-entry .text-input:has(textarea),
-.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea),
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea) {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    overflow: visible !important;
-}
-
-/* Textarea itself gets the same border as normal text boxes */
-.theme-entry textarea,
-.theme-entry textarea.SFC,
-.theme-entry .input-control textarea,
-.theme-entry .SourceCode-Forms-Controls-Web-TextArea textarea,
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea textarea {
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    background: #ffffff !important;
-    box-shadow: none !important;
-    outline: none !important;
-    min-height: 90px !important;
-    padding: 8px 12px !important;
-    color: #1e293b !important;
-    box-sizing: border-box !important;
-}
-
-/* Textarea focus should match small text boxes */
-.theme-entry textarea:focus,
-.theme-entry .input-control textarea:focus {
-    border-color: #2563eb !important;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
-}
-/* =====================================================
-   TEXTAREA CONSISTENCY FIX - BORDER ONLY ON WRAPPER
-   Put this ABOVE the final hidden-controls block
-   ===================================================== */
-
-/* Textarea wrapper gets the same border as small inputs */
-.theme-entry .input-control:has(textarea),
-.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea),
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea),
-.theme-entry .text-input:has(textarea) {
-    width: 100% !important;
-    min-height: 90px !important;
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-}
-
-/* Inner textarea must have NO border */
-.theme-entry .input-control textarea,
-.theme-entry .SourceCode-Forms-Controls-Web-TextArea textarea,
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea textarea,
-.theme-entry textarea {
-    width: 100% !important;
-    min-height: 88px !important;
-    padding: 8px 12px !important;
-    background: transparent !important;
-    border: none !important;
-    border-bottom: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    outline: none !important;
-    box-sizing: border-box !important;
-    resize: vertical !important;
-}
-
-/* Focus effect only on wrapper */
-.theme-entry .input-control:has(textarea):focus-within,
-.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea):focus-within,
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea):focus-within {
-    border-color: #2563eb !important;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
 }
