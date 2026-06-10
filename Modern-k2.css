@@ -659,3 +659,31 @@ body,
     opacity: 1 !important;
     font-weight: 400 !important;
 }
+/* =====================================================
+   MAKE SMALL EMPTY TEXTBOX WATERMARK LOOK LIGHTER
+   Practical K2 fix: applies lighter text to empty/watermark-like input boxes
+   ===================================================== */
+
+/* Lighten K2 small textbox text slightly */
+.theme-entry .input-control input,
+.theme-entry .text-input input,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox input {
+    color: #64748b !important;
+    -webkit-text-fill-color: #64748b !important;
+}
+
+/* But make filled/readable known values dark again where possible */
+.theme-entry input:not([value="Type a value"]):not(.watermark),
+.theme-entry .input-control input:not([value="Type a value"]):not(.watermark),
+.theme-entry .text-input input:not([value="Type a value"]):not(.watermark) {
+    color: #1e293b !important;
+    -webkit-text-fill-color: #1e293b !important;
+}
+
+/* Keep textareas placeholders light */
+.theme-entry textarea::placeholder,
+.theme-entry textarea.watermark,
+.theme-entry .input-control textarea.watermark {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+}
