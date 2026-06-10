@@ -595,3 +595,48 @@ body,
     border-color: #2563eb !important;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
 }
+/* =====================================================
+   TEXTAREA CONSISTENCY FIX - BORDER ONLY ON WRAPPER
+   Put this ABOVE the final hidden-controls block
+   ===================================================== */
+
+/* Textarea wrapper gets the same border as small inputs */
+.theme-entry .input-control:has(textarea),
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea),
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea),
+.theme-entry .text-input:has(textarea) {
+    width: 100% !important;
+    min-height: 90px !important;
+    background: #ffffff !important;
+    border: 1px solid #dbe2ea !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* Inner textarea must have NO border */
+.theme-entry .input-control textarea,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea textarea,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea textarea,
+.theme-entry textarea {
+    width: 100% !important;
+    min-height: 88px !important;
+    padding: 8px 12px !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+    resize: vertical !important;
+}
+
+/* Focus effect only on wrapper */
+.theme-entry .input-control:has(textarea):focus-within,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea:has(textarea):focus-within,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea:has(textarea):focus-within {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
+}
