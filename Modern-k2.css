@@ -608,3 +608,54 @@ body,
 .theme-entry textarea:not(.watermark) {
     color: #1e293b !important;
 }
+/* =====================================================
+   HARD FIX: K2 WATERMARK TEXT COLOR
+   Makes "Type a value" light in small text boxes too
+   ===================================================== */
+
+/* K2 often applies watermark class directly on the input */
+.theme-entry input.watermark,
+.theme-entry input.input-control-watermark,
+.theme-entry .input-control input.watermark,
+.theme-entry .input-control input.input-control-watermark,
+.theme-entry .text-input input.watermark,
+.theme-entry .text-input input.input-control-watermark {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+
+/* K2 watermark containers */
+.theme-entry .input-control-watermark,
+.theme-entry .watermark,
+.theme-entry .watermark-text,
+.theme-entry .input-watermark,
+.theme-entry .text-input .input-control-watermark,
+.theme-entry .text-input .watermark,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox .input-control-watermark,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox .watermark {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+
+/* Native placeholders */
+.theme-entry input::placeholder,
+.theme-entry textarea::placeholder {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+
+/* If K2 stores "Type a value" as text in empty textboxes, target inactive empty-looking fields */
+.theme-entry input[value="Type a value"],
+.theme-entry input[title="Type a value"],
+.theme-entry input[aria-label="Type a value"] {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
