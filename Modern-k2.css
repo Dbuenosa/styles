@@ -567,3 +567,44 @@ body,
     border-color: #2563eb !important;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
 }
+
+/* =====================================================
+   CONSISTENT LIGHT PLACEHOLDER / WATERMARK TEXT
+   ===================================================== */
+
+/* Normal HTML placeholders */
+.theme-entry input::placeholder,
+.theme-entry textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+
+/* K2 watermark spans/divs inside text boxes */
+.theme-entry .input-control-watermark,
+.theme-entry .watermark,
+.theme-entry .text-input .watermark,
+.theme-entry .input-control .watermark,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox .watermark,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox .watermark {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+
+/* K2 text box visible watermark text */
+.theme-entry .input-control input.watermark,
+.theme-entry .text-input input.watermark,
+.theme-entry input.watermark {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+
+/* Readable typed text stays dark */
+.theme-entry .input-control input:not(.watermark),
+.theme-entry .input-control textarea:not(.watermark),
+.theme-entry input[type="text"]:not(.watermark),
+.theme-entry textarea:not(.watermark) {
+    color: #1e293b !important;
+}
