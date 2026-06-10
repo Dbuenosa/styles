@@ -687,3 +687,24 @@ body,
     color: #94a3b8 !important;
     -webkit-text-fill-color: #94a3b8 !important;
 }
+/* =====================================================
+   RESPECT K2 HIDDEN / NOT VISIBLE CONTROLS
+   Must be at the very bottom of the CSS file
+   ===================================================== */
+
+.theme-entry [style*="display: none"],
+.theme-entry [style*="display:none"],
+.theme-entry .hidden,
+.theme-entry .hide,
+.theme-entry .invisible,
+.theme-entry .not-visible,
+.theme-entry .runtime-hidden,
+.theme-entry .SFC.hidden,
+.theme-entry .input-control.hidden,
+.theme-entry span.hidden,
+.theme-entry div.hidden,
+.theme-entry tr.hidden,
+.theme-entry td.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
