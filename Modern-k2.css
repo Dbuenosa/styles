@@ -226,3 +226,83 @@ a.SourceCode-Forms-Controls-Web-Button {
         font-size: 16px;
     }
 }
+
+
+/* =====================================================
+   K2 RUNTIME STRONG OVERRIDES
+   ===================================================== */
+
+.theme-entry {
+    background: #f5f7fb !important;
+    font-family: Inter, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Center and limit the whole form */
+.theme-entry .form,
+.theme-entry #pgInnerPanel,
+.theme-entry #pgTabContent {
+    max-width: 1100px !important;
+    margin: 24px auto !important;
+    background: #ffffff !important;
+}
+
+/* View card */
+.theme-entry .view,
+.theme-entry .view-canvas {
+    background: #ffffff !important;
+    border: 1px solid #dbe2ea !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+    overflow: hidden !important;
+    margin-bottom: 24px !important;
+}
+
+/* View content */
+.theme-entry .view .innerpanel,
+.theme-entry .view-canvas .innerpanel,
+.theme-entry .view .panel,
+.theme-entry .view .grid {
+    background: #ffffff !important;
+}
+
+/* View header */
+.theme-entry .view .header,
+.theme-entry .view-header,
+.theme-entry .panel-header,
+.theme-entry .grid-header {
+    background: #e5e7eb !important;
+    border-bottom: 1px solid #d1d5db !important;
+    color: #1e293b !important;
+}
+
+/* Inputs */
+.theme-entry input[type="text"],
+.theme-entry textarea,
+.theme-entry select,
+.theme-entry .input-control,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox {
+    background: #ffffff !important;
+    border: 1px solid #dbe2ea !important;
+    border-radius: 10px !important;
+    min-height: 38px !important;
+    padding: 6px 10px !important;
+    color: #1e293b !important;
+}
+
+/* Buttons */
+.theme-entry .SourceCode-Forms-Controls-Web-Button,
+.theme-entry a.SourceCode-Forms-Controls-Web-Button {
+    background: #2563eb !important;
+    border-color: #2563eb !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    min-height: 40px !important;
+    padding: 0 18px !important;
+    font-weight: 600 !important;
+}
+
+.theme-entry .SourceCode-Forms-Controls-Web-Button:hover,
+.theme-entry a.SourceCode-Forms-Controls-Web-Button:hover {
+    background: #1d4ed8 !important;
+    border-color: #1d4ed8 !important;
+}
