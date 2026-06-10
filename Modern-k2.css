@@ -520,3 +520,68 @@ body,
     border-bottom: none !important;
     box-shadow: none !important;
 }
+/* =====================================================
+   CONSISTENT BORDERS FOR SMALL INPUTS
+   Keeps memo/double-line fix, but restores borders on small fields
+   ===================================================== */
+
+/* Give all K2 input containers one clean border */
+.theme-entry .input-control {
+    border: 1px solid #dbe2ea !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    min-height: 40px !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+}
+
+/* Keep the real inner input clean, no second line */
+.theme-entry .input-control input,
+.theme-entry .input-control textarea,
+.theme-entry .input-control select {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    outline: none !important;
+}
+
+/* Padding for single-line fields */
+.theme-entry .input-control input,
+.theme-entry input[type="text"] {
+    padding: 8px 12px !important;
+    min-height: 38px !important;
+}
+
+/* Padding/height for memo fields */
+.theme-entry .input-control textarea,
+.theme-entry textarea {
+    padding: 12px 14px !important;
+    min-height: 90px !important;
+    line-height: 1.45 !important;
+}
+
+/* Focus effect for all fields */
+.theme-entry .input-control:focus-within {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
+}
+
+/* Date picker should also have one clean border */
+.theme-entry .input-control.datepicker,
+.theme-entry .calendar-control,
+.theme-entry .date-control {
+    border: 1px solid #dbe2ea !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    min-height: 40px !important;
+    overflow: hidden !important;
+}
+
+/* Keep date picker inner parts borderless */
+.theme-entry .input-control.datepicker *,
+.theme-entry .calendar-control *,
+.theme-entry .date-control * {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
