@@ -1,0 +1,228 @@
+/* =====================================================
+   NINTEX K2 FIVE - MODERN STYLE PROFILE
+   ===================================================== */
+
+:root {
+    --k2-primary: #2563eb;
+    --k2-primary-hover: #1d4ed8;
+    --k2-success: #16a34a;
+    --k2-danger: #dc2626;
+    --k2-warning: #f59e0b;
+
+    --k2-bg: #f5f7fb;
+    --k2-surface: #ffffff;
+    --k2-border: #dbe2ea;
+    --k2-text: #1e293b;
+    --k2-muted: #64748b;
+
+    --k2-radius: 14px;
+    --k2-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.05),
+        0 1px 3px rgba(15, 23, 42, 0.08);
+
+    --k2-spacing: 16px;
+    --k2-transition: 0.2s ease;
+
+    --k2-font:
+        Inter,
+        Segoe UI,
+        Roboto,
+        sans-serif;
+}
+
+/* =====================================================
+   GLOBAL
+   ===================================================== */
+
+body,
+.theme-entry {
+    font-family: var(--k2-font);
+    background: var(--k2-bg);
+    color: var(--k2-text);
+}
+
+.runtime-form {
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* =====================================================
+   PANELS / VIEWS
+   ===================================================== */
+
+.view > .innerpanel,
+.view-canvas > .innerpanel {
+    background: var(--k2-surface);
+    border-radius: var(--k2-radius);
+    border: 1px solid var(--k2-border);
+    box-shadow: var(--k2-shadow);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.panel-header,
+.grid-header {
+    background: white;
+    border-bottom: 1px solid var(--k2-border);
+    padding: 18px 24px;
+}
+
+.panel-header-wrapper,
+.grid-header-wrapper {
+    background: transparent !important;
+}
+
+.panel-header-text,
+.grid-header-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--k2-text);
+}
+
+.panel-body {
+    padding: 24px;
+}
+
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+
+input.SFC,
+textarea.SFC,
+select.SFC,
+.input-control,
+.SourceCode-Forms-Controls-Web-TextBox {
+    border-radius: 10px !important;
+    border: 1px solid var(--k2-border) !important;
+    background: white !important;
+    min-height: 42px;
+    transition: var(--k2-transition);
+    font-size: 14px;
+}
+
+input.SFC:focus,
+textarea.SFC:focus,
+select.SFC:focus {
+    border-color: var(--k2-primary) !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    outline: none;
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.SourceCode-Forms-Controls-Web-Button,
+a.SourceCode-Forms-Controls-Web-Button {
+    border-radius: 10px !important;
+    border: none !important;
+    background: var(--k2-primary) !important;
+    color: white !important;
+    min-height: 42px;
+    padding: 0 18px;
+    font-weight: 600;
+    transition: var(--k2-transition);
+    box-shadow: none !important;
+}
+
+.SourceCode-Forms-Controls-Web-Button:hover {
+    background: var(--k2-primary-hover) !important;
+    transform: translateY(-1px);
+}
+
+/* =====================================================
+   GRID
+   ===================================================== */
+
+.grid-content-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.grid-content-table th {
+    background: #f8fafc;
+    color: var(--k2-text);
+    font-weight: 600;
+    border-bottom: 1px solid var(--k2-border);
+    padding: 14px;
+}
+
+.grid-content-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.grid-content-table tr:hover td {
+    background: #f8fbff;
+}
+
+/* =====================================================
+   TABS
+   ===================================================== */
+
+.tab-box-tabs {
+    border-bottom: 1px solid var(--k2-border);
+    padding: 0 12px;
+}
+
+.tab-box-tabs li a {
+    border-radius: 10px 10px 0 0;
+    padding: 12px 18px;
+    color: var(--k2-muted);
+    transition: var(--k2-transition);
+}
+
+.tab-box-tabs li.active a {
+    background: white;
+    color: var(--k2-primary);
+    font-weight: 600;
+}
+
+/* =====================================================
+   VALIDATION
+   ===================================================== */
+
+.validation,
+.input-validation-error {
+    border-color: var(--k2-danger) !important;
+}
+
+.validation-message {
+    color: var(--k2-danger);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+
+.k2-card {
+    background: white;
+    border-radius: var(--k2-radius);
+    box-shadow: var(--k2-shadow);
+    padding: 24px;
+    border: 1px solid var(--k2-border);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .panel-body {
+        padding: 16px;
+    }
+
+    .runtime-form {
+        width: 100% !important;
+    }
+
+    input.SFC,
+    textarea.SFC,
+    select.SFC {
+        font-size: 16px;
+    }
+}
