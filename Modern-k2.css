@@ -442,3 +442,81 @@ body,
         font-size: 16px !important;
     }
 }
+/* =====================================================
+   HARD FIX: REMOVE DOUBLE LINES AROUND MEMO / TEXTAREA / DATE
+   ===================================================== */
+
+/* Remove K2 table-cell bottom lines around controls */
+.theme-entry td.editor-cell,
+.theme-entry td.editor-cell.lastrow,
+.theme-entry td.editor-cell.control-cell,
+.theme-entry .editor-cell,
+.theme-entry .control-cell {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove horizontal lines created by K2 layout tables */
+.theme-entry table.editor-table,
+.theme-entry table.editor-table td,
+.theme-entry table.SourceCode-Forms-Controls-Web-ControlPack-Table,
+.theme-entry table.SourceCode-Forms-Controls-Web-ControlPack-Table td {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove K2 internal wrapper borders */
+.theme-entry .input-control,
+.theme-entry .input-control-m,
+.theme-entry .input-control-m-c,
+.theme-entry .input-control-c,
+.theme-entry .input-control-content,
+.theme-entry .input-control-wrapper,
+.theme-entry .input-control-body {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Keep one clean border only on the visible control */
+.theme-entry .input-control {
+    border: 1px solid #dbe2ea !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+}
+
+/* Remove borders from the real textarea/input inside */
+.theme-entry .input-control input,
+.theme-entry .input-control textarea,
+.theme-entry input[type="text"],
+.theme-entry textarea {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Better height for long text fields */
+.theme-entry textarea,
+.theme-entry .input-control textarea {
+    min-height: 90px !important;
+    padding: 12px 14px !important;
+    line-height: 1.45 !important;
+}
+
+/* Date picker specific cleanup */
+.theme-entry .input-control.datepicker,
+.theme-entry .calendar-control,
+.theme-entry .date-control {
+    border: 1px solid #dbe2ea !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+}
+
+.theme-entry .input-control.datepicker *,
+.theme-entry .calendar-control *,
+.theme-entry .date-control * {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
