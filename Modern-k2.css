@@ -1,209 +1,419 @@
 /* =====================================================
    NINTEX K2 FIVE - MODERN STYLE PROFILE
+   Custom Modern Runtime Theme
+   ===================================================== */
+
+/* =====================================================
+   DESIGN TOKENS
    ===================================================== */
 
 :root {
     --k2-primary: #2563eb;
     --k2-primary-hover: #1d4ed8;
+    --k2-primary-focus: rgba(37, 99, 235, 0.16);
+
     --k2-success: #16a34a;
     --k2-danger: #dc2626;
     --k2-warning: #f59e0b;
 
     --k2-bg: #f5f7fb;
     --k2-surface: #ffffff;
+    --k2-header: #e5e7eb;
     --k2-border: #dbe2ea;
+    --k2-border-strong: #cbd5e1;
+
     --k2-text: #1e293b;
     --k2-muted: #64748b;
+    --k2-placeholder: #a0aec0;
 
-    --k2-radius: 14px;
+    --k2-radius: 12px;
+    --k2-radius-lg: 14px;
+
     --k2-shadow:
         0 2px 8px rgba(15, 23, 42, 0.05),
         0 1px 3px rgba(15, 23, 42, 0.08);
 
-    --k2-spacing: 16px;
+    --k2-font: Inter, "Segoe UI", Roboto, Arial, sans-serif;
     --k2-transition: 0.2s ease;
-
-    --k2-font:
-        Inter,
-        Segoe UI,
-        Roboto,
-        sans-serif;
 }
 
 /* =====================================================
    GLOBAL
    ===================================================== */
 
+html,
 body,
 .theme-entry {
-    font-family: var(--k2-font);
-    background: var(--k2-bg);
-    color: var(--k2-text);
+    font-family: var(--k2-font) !important;
+    background: var(--k2-bg) !important;
+    color: var(--k2-text) !important;
 }
 
+/* Center and limit whole K2 form */
+.theme-entry .form,
+.theme-entry #pgInnerPanel,
+.theme-entry #pgTabContent {
+    max-width: 1100px !important;
+    margin: 24px auto !important;
+    background: var(--k2-surface) !important;
+}
+
+/* Avoid excessive full-screen stretching */
 .runtime-form {
-    max-width: 1400px;
-    margin: auto;
+    max-width: 1100px !important;
+    margin: 24px auto !important;
 }
 
 /* =====================================================
-   PANELS / VIEWS
+   VIEWS / PANELS / CARDS
    ===================================================== */
 
-.view > .innerpanel,
-.view-canvas > .innerpanel {
-    background: var(--k2-surface);
-    border-radius: var(--k2-radius);
-    border: 1px solid var(--k2-border);
-    box-shadow: var(--k2-shadow);
-    overflow: hidden;
-    margin-bottom: 24px;
+.theme-entry .view,
+.theme-entry .view-canvas {
+    background: var(--k2-surface) !important;
+    border: 1px solid var(--k2-border) !important;
+    border-radius: var(--k2-radius-lg) !important;
+    box-shadow: var(--k2-shadow) !important;
+    overflow: hidden !important;
+    margin-bottom: 24px !important;
 }
 
-.panel-header,
-.grid-header {
-    background: white;
-    border-bottom: 1px solid var(--k2-border);
-    padding: 18px 24px;
+/* View inner content */
+.theme-entry .view .innerpanel,
+.theme-entry .view-canvas .innerpanel,
+.theme-entry .view .panel,
+.theme-entry .view .grid,
+.theme-entry .view .view-canvas,
+.theme-entry .view-canvas > .grid,
+.theme-entry .view-canvas > .panel {
+    background: var(--k2-surface) !important;
 }
 
-.panel-header-wrapper,
-.grid-header-wrapper {
+/* View headers */
+.theme-entry .view .header,
+.theme-entry .view-header,
+.theme-entry .panel-header,
+.theme-entry .grid-header,
+.theme-entry .panel-header-wrapper,
+.theme-entry .grid-header-wrapper {
+    background: var(--k2-header) !important;
+    border-bottom: 1px solid var(--k2-border-strong) !important;
+    color: var(--k2-text) !important;
+}
+
+/* Header text */
+.theme-entry .panel-header-text,
+.theme-entry .grid-header-text,
+.theme-entry .view-header-text {
+    color: var(--k2-text) !important;
+    font-weight: 600 !important;
+}
+
+/* Section/card helper class if needed */
+.k2-card {
+    background: var(--k2-surface) !important;
+    border-radius: var(--k2-radius-lg) !important;
+    box-shadow: var(--k2-shadow) !important;
+    padding: 24px !important;
+    border: 1px solid var(--k2-border) !important;
+}
+
+/* =====================================================
+   FORM LABELS / TEXT
+   ===================================================== */
+
+.theme-entry label,
+.theme-entry .input-control label,
+.theme-entry .editor-cell label,
+.theme-entry .formcontrol label {
+    color: var(--k2-text) !important;
+    font-weight: 500 !important;
+}
+
+.theme-entry .description,
+.theme-entry .watermark,
+.theme-entry .placeholder {
+    color: var(--k2-placeholder) !important;
+}
+
+/* =====================================================
+   INPUTS - OUTER CONTROL BOX
+   ===================================================== */
+
+/* Main visible border should be on the outer K2 input-control */
+.theme-entry .input-control,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea,
+.theme-entry input.SFC,
+.theme-entry textarea.SFC,
+.theme-entry select.SFC {
+    background: var(--k2-surface) !important;
+    border: 1px solid var(--k2-border) !important;
+    border-radius: var(--k2-radius) !important;
+    box-shadow: none !important;
+    color: var(--k2-text) !important;
+    transition: var(--k2-transition) !important;
+}
+
+/* Standard input height */
+.theme-entry .input-control,
+.theme-entry input.SFC,
+.theme-entry select.SFC,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox {
+    min-height: 40px !important;
+}
+
+/* =====================================================
+   FINAL FIX: REMOVE DOUBLE INNER LINES
+   ===================================================== */
+
+/* Remove K2 internal borders/underlines from wrappers */
+.theme-entry .input-control .input-control-m,
+.theme-entry .input-control .input-control-m-c,
+.theme-entry .input-control .input-control-c,
+.theme-entry .input-control .input-control-content,
+.theme-entry .input-control .input-control-wrapper,
+.theme-entry .input-control .input-control-body,
+.theme-entry .input-control .input-control-watermark,
+.theme-entry .input-control .text-input,
+.theme-entry .input-control .textarea-input {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
     background: transparent !important;
 }
 
-.panel-header-text,
-.grid-header-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--k2-text);
+/* Remove inner borders from actual inputs */
+.theme-entry .input-control input,
+.theme-entry .input-control input[type="text"],
+.theme-entry .input-control textarea,
+.theme-entry .input-control select,
+.theme-entry input[type="text"],
+.theme-entry textarea,
+.theme-entry select {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    color: var(--k2-text) !important;
+    outline: none !important;
 }
 
-.panel-body {
-    padding: 24px;
+/* Placeholder/watermark */
+.theme-entry input::placeholder,
+.theme-entry textarea::placeholder,
+.theme-entry .input-control-watermark,
+.theme-entry .watermark {
+    color: var(--k2-placeholder) !important;
 }
 
+/* Focus state: only one clean blue outline */
+.theme-entry .input-control:focus-within,
+.theme-entry input.SFC:focus,
+.theme-entry textarea.SFC:focus,
+.theme-entry select.SFC:focus,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox:focus-within,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea:focus-within {
+    border-color: var(--k2-primary) !important;
+    box-shadow: 0 0 0 4px var(--k2-primary-focus) !important;
+}
 
 /* =====================================================
-   INPUTS
+   TEXT AREAS / LONG TEXT FIELDS
    ===================================================== */
 
-input.SFC,
-textarea.SFC,
-select.SFC,
-.input-control,
-.SourceCode-Forms-Controls-Web-TextBox {
-    border-radius: 10px !important;
-    border: 1px solid var(--k2-border) !important;
-    background: white !important;
-    min-height: 42px;
-    transition: var(--k2-transition);
-    font-size: 14px;
+.theme-entry textarea,
+.theme-entry textarea.SFC,
+.theme-entry .SourceCode-Forms-Controls-Web-TextArea {
+    min-height: 96px !important;
+    padding: 12px 14px !important;
+    line-height: 1.45 !important;
+    resize: vertical !important;
 }
 
-input.SFC:focus,
-textarea.SFC:focus,
-select.SFC:focus {
-    border-color: var(--k2-primary) !important;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-    outline: none;
+/* Long memo controls sometimes render as textbox wrappers */
+.theme-entry .input-control textarea,
+.theme-entry .input-control .textarea-input {
+    min-height: 96px !important;
+    padding: 12px 14px !important;
+    line-height: 1.45 !important;
+}
+
+/* Optional: make memo-style controls easier to read */
+.theme-entry .memo,
+.theme-entry .text-area,
+.theme-entry [data-options*="memo"] {
+    min-height: 96px !important;
+}
+
+/* =====================================================
+   DATE PICKER / CALENDAR CLEANUP
+   ===================================================== */
+
+.theme-entry .calendar-control,
+.theme-entry .date-control,
+.theme-entry .picker-input,
+.theme-entry .input-control.select-box,
+.theme-entry .input-control.datepicker {
+    background: var(--k2-surface) !important;
+    border: 1px solid var(--k2-border) !important;
+    border-radius: var(--k2-radius) !important;
+    box-shadow: none !important;
+}
+
+/* Remove inner date input underline */
+.theme-entry .input-control.datepicker input,
+.theme-entry .input-control.select-box input,
+.theme-entry .calendar-control input,
+.theme-entry .date-control input {
+    border: none !important;
+    border-bottom: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Date picker icon */
+.theme-entry .input-control a.date,
+.theme-entry .input-control a.picker,
+.theme-entry .input-control .picker,
+.theme-entry .input-control .date {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
 /* =====================================================
    BUTTONS
    ===================================================== */
 
-.SourceCode-Forms-Controls-Web-Button,
-a.SourceCode-Forms-Controls-Web-Button {
-    border-radius: 10px !important;
-    border: none !important;
+.theme-entry .SourceCode-Forms-Controls-Web-Button,
+.theme-entry a.SourceCode-Forms-Controls-Web-Button,
+.theme-entry button,
+.theme-entry input[type="button"],
+.theme-entry input[type="submit"] {
     background: var(--k2-primary) !important;
-    color: white !important;
-    min-height: 42px;
-    padding: 0 18px;
-    font-weight: 600;
-    transition: var(--k2-transition);
+    border: 1px solid var(--k2-primary) !important;
+    color: #ffffff !important;
+    border-radius: var(--k2-radius) !important;
+    min-height: 40px !important;
+    padding: 0 18px !important;
+    font-weight: 600 !important;
+    transition: var(--k2-transition) !important;
     box-shadow: none !important;
+    cursor: pointer !important;
 }
 
-.SourceCode-Forms-Controls-Web-Button:hover {
+/* Button hover */
+.theme-entry .SourceCode-Forms-Controls-Web-Button:hover,
+.theme-entry a.SourceCode-Forms-Controls-Web-Button:hover,
+.theme-entry button:hover,
+.theme-entry input[type="button"]:hover,
+.theme-entry input[type="submit"]:hover {
     background: var(--k2-primary-hover) !important;
+    border-color: var(--k2-primary-hover) !important;
+    color: #ffffff !important;
     transform: translateY(-1px);
 }
 
+/* Disabled buttons */
+.theme-entry .SourceCode-Forms-Controls-Web-Button.disabled,
+.theme-entry .SourceCode-Forms-Controls-Web-Button[disabled],
+.theme-entry button[disabled],
+.theme-entry input[type="button"][disabled],
+.theme-entry input[type="submit"][disabled] {
+    background: #94a3b8 !important;
+    border-color: #94a3b8 !important;
+    color: #ffffff !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
 /* =====================================================
-   GRID
+   FILE UPLOAD
    ===================================================== */
 
-.grid-content-table {
-    border-collapse: separate;
-    border-spacing: 0;
+.theme-entry .file-wrapper,
+.theme-entry .file-upload,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-FileAttachment {
+    border: 1px dashed var(--k2-border-strong) !important;
+    border-radius: var(--k2-radius) !important;
+    background: #f8fafc !important;
+    color: var(--k2-muted) !important;
+    padding: 16px !important;
 }
 
-.grid-content-table th {
-    background: #f8fafc;
-    color: var(--k2-text);
-    font-weight: 600;
-    border-bottom: 1px solid var(--k2-border);
-    padding: 14px;
+/* =====================================================
+   GRID / LIST VIEW
+   ===================================================== */
+
+.theme-entry .grid-content-table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
 }
 
-.grid-content-table td {
-    padding: 14px;
-    border-bottom: 1px solid #eef2f7;
+.theme-entry .grid-content-table th {
+    background: #f8fafc !important;
+    color: var(--k2-text) !important;
+    font-weight: 600 !important;
+    border-bottom: 1px solid var(--k2-border) !important;
+    padding: 14px !important;
 }
 
-.grid-content-table tr:hover td {
-    background: #f8fbff;
+.theme-entry .grid-content-table td {
+    padding: 14px !important;
+    border-bottom: 1px solid #eef2f7 !important;
+}
+
+.theme-entry .grid-content-table tr:hover td {
+    background: #f8fbff !important;
 }
 
 /* =====================================================
    TABS
    ===================================================== */
 
-.tab-box-tabs {
-    border-bottom: 1px solid var(--k2-border);
-    padding: 0 12px;
+.theme-entry .tab-box-tabs {
+    border-bottom: 1px solid var(--k2-border) !important;
+    padding: 0 12px !important;
 }
 
-.tab-box-tabs li a {
-    border-radius: 10px 10px 0 0;
-    padding: 12px 18px;
-    color: var(--k2-muted);
-    transition: var(--k2-transition);
+.theme-entry .tab-box-tabs li a {
+    border-radius: 10px 10px 0 0 !important;
+    padding: 12px 18px !important;
+    color: var(--k2-muted) !important;
+    transition: var(--k2-transition) !important;
 }
 
-.tab-box-tabs li.active a {
-    background: white;
-    color: var(--k2-primary);
-    font-weight: 600;
+.theme-entry .tab-box-tabs li.active a {
+    background: var(--k2-surface) !important;
+    color: var(--k2-primary) !important;
+    font-weight: 600 !important;
 }
 
 /* =====================================================
    VALIDATION
    ===================================================== */
 
-.validation,
-.input-validation-error {
+.theme-entry .validation,
+.theme-entry .input-validation-error {
     border-color: var(--k2-danger) !important;
 }
 
-.validation-message {
-    color: var(--k2-danger);
-    font-size: 12px;
-    margin-top: 4px;
+.theme-entry .validation-message {
+    color: var(--k2-danger) !important;
+    font-size: 12px !important;
+    margin-top: 4px !important;
 }
 
 /* =====================================================
-   CARDS
+   AI RECOMMENDATION BOX HELPER
+   Optional: assign class/name if needed later
    ===================================================== */
 
-.k2-card {
-    background: white;
-    border-radius: var(--k2-radius);
-    box-shadow: var(--k2-shadow);
-    padding: 24px;
-    border: 1px solid var(--k2-border);
+.theme-entry .ai-recommendation,
+.theme-entry [name*="AI Recommendation"],
+.theme-entry [title*="AI Recommendation"] {
+    min-height: 120px !important;
 }
 
 /* =====================================================
@@ -211,152 +421,24 @@ a.SourceCode-Forms-Controls-Web-Button {
    ===================================================== */
 
 @media (max-width: 768px) {
-
-    .panel-body {
-        padding: 16px;
-    }
-
+    .theme-entry .form,
+    .theme-entry #pgInnerPanel,
+    .theme-entry #pgTabContent,
     .runtime-form {
         width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
     }
 
-    input.SFC,
-    textarea.SFC,
-    select.SFC {
-        font-size: 16px;
+    .theme-entry textarea,
+    .theme-entry textarea.SFC,
+    .theme-entry .SourceCode-Forms-Controls-Web-TextArea {
+        min-height: 120px !important;
+        font-size: 16px !important;
     }
-}
 
-
-/* =====================================================
-   K2 RUNTIME STRONG OVERRIDES
-   ===================================================== */
-
-.theme-entry {
-    background: #f5f7fb !important;
-    font-family: Inter, "Segoe UI", Roboto, sans-serif !important;
-}
-
-/* Center and limit the whole form */
-.theme-entry .form,
-.theme-entry #pgInnerPanel,
-.theme-entry #pgTabContent {
-    max-width: 1100px !important;
-    margin: 24px auto !important;
-    background: #ffffff !important;
-}
-
-/* View card */
-.theme-entry .view,
-.theme-entry .view-canvas {
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 14px !important;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
-    overflow: hidden !important;
-    margin-bottom: 24px !important;
-}
-
-/* View content */
-.theme-entry .view .innerpanel,
-.theme-entry .view-canvas .innerpanel,
-.theme-entry .view .panel,
-.theme-entry .view .grid {
-    background: #ffffff !important;
-}
-
-/* View header */
-.theme-entry .view .header,
-.theme-entry .view-header,
-.theme-entry .panel-header,
-.theme-entry .grid-header {
-    background: #e5e7eb !important;
-    border-bottom: 1px solid #d1d5db !important;
-    color: #1e293b !important;
-}
-
-/* Inputs */
-.theme-entry input[type="text"],
-.theme-entry textarea,
-.theme-entry select,
-.theme-entry .input-control,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox {
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    min-height: 38px !important;
-    padding: 6px 10px !important;
-    color: #1e293b !important;
-}
-
-/* Buttons */
-.theme-entry .SourceCode-Forms-Controls-Web-Button,
-.theme-entry a.SourceCode-Forms-Controls-Web-Button {
-    background: #2563eb !important;
-    border-color: #2563eb !important;
-    color: #ffffff !important;
-    border-radius: 10px !important;
-    min-height: 40px !important;
-    padding: 0 18px !important;
-    font-weight: 600 !important;
-}
-
-.theme-entry .SourceCode-Forms-Controls-Web-Button:hover,
-.theme-entry a.SourceCode-Forms-Controls-Web-Button:hover {
-    background: #1d4ed8 !important;
-    border-color: #1d4ed8 !important;
-}
-
-/* =====================================================
-   FIX DOUBLE LINES ON K2 INPUTS / TEXTAREAS
-   ===================================================== */
-
-/* Remove K2 inner underline/bottom border inside styled controls */
-.theme-entry .input-control,
-.theme-entry .input-control .input-control-m-c,
-.theme-entry .input-control .input-control-wrapper,
-.theme-entry .input-control .input-control-content,
-.theme-entry .input-control textarea,
-.theme-entry .input-control input {
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* Make text areas look like clean modern boxes */
-.theme-entry textarea,
-.theme-entry .SourceCode-Forms-Controls-Web-TextArea,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox[data-options*="memo"] {
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    min-height: 90px !important;
-    padding: 12px 14px !important;
-    line-height: 1.45 !important;
-    box-shadow: none !important;
-    resize: vertical;
-}
-
-/* Date picker: keep one clean border only */
-.theme-entry .calendar-control,
-.theme-entry .date-control,
-.theme-entry .picker-input,
-.theme-entry .input-control.select-box,
-.theme-entry .input-control.datepicker {
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    background: #ffffff !important;
-    box-shadow: none !important;
-}
-
-/* Reduce extra bottom line on date input area */
-.theme-entry .input-control.datepicker input,
-.theme-entry .input-control.select-box input {
-    border: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* Optional: give long fields more breathing space */
-.theme-entry textarea {
-    min-height: 110px !important;
+    .theme-entry input,
+    .theme-entry select {
+        font-size: 16px !important;
+    }
 }
