@@ -1,6 +1,6 @@
 /* =====================================================
    NINTEX K2 FIVE - MODERN STYLE PROFILE
-   Full consistent form styling
+   Safe version: respects K2 Visible = false rules
    ===================================================== */
 
 /* =====================================================
@@ -10,7 +10,7 @@
 :root {
     --k2-primary: #2563eb;
     --k2-primary-hover: #1d4ed8;
-    --k2-primary-focus: rgba(37, 99, 235, 0.16);
+    --k2-primary-focus: rgba(37, 99, 235, 0.14);
 
     --k2-bg: #f5f7fb;
     --k2-surface: #ffffff;
@@ -100,11 +100,9 @@ body,
 }
 
 /* =====================================================
-   REMOVE K2 INTERNAL LINES FIRST
-   This prevents double borders.
+   REMOVE K2 INTERNAL DOUBLE LINES
    ===================================================== */
 
-/* Remove table/cell bottom lines */
 .theme-entry td.editor-cell,
 .theme-entry td.editor-cell.lastrow,
 .theme-entry td.editor-cell.control-cell,
@@ -123,7 +121,7 @@ body,
     box-shadow: none !important;
 }
 
-/* Remove K2 wrapper underlines */
+/* Remove K2 wrapper underlines but DO NOT force display */
 .theme-entry .input-control,
 .theme-entry .input-control-m,
 .theme-entry .input-control-m-c,
@@ -134,29 +132,48 @@ body,
 .theme-entry .input-control-watermark {
     border-bottom: none !important;
     box-shadow: none !important;
-    background: transparent !important;
 }
 
 /* =====================================================
-   CONSISTENT EDITABLE INPUTS
-   Border is applied to the real editable control.
+   CONSISTENT INPUT WRAPPERS
+   IMPORTANT: no display:block !important here.
+   This avoids re-showing hidden K2 controls.
    ===================================================== */
 
-/* Normal text inputs */
-.theme-entry input[type="text"],
-.theme-entry input.SFC,
+.theme-entry .input-control,
+.theme-entry .text-input,
+.theme-entry .picker-input,
 .theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox input,
-.theme-entry .input-control input[type="text"],
-.theme-entry .input-control input {
-    display: block !important;
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox {
     width: 100% !important;
     min-height: 40px !important;
-    padding: 8px 12px !important;
-
     background: #ffffff !important;
     border: 1px solid var(--k2-border) !important;
     border-radius: var(--k2-radius) !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* =====================================================
+   NORMAL EDITABLE INPUTS
+   ===================================================== */
+
+.theme-entry input[type="text"],
+.theme-entry input.SFC,
+.theme-entry .input-control input[type="text"],
+.theme-entry .input-control input,
+.theme-entry .text-input input,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox input,
+.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox input {
+    width: 100% !important;
+    min-height: 38px !important;
+    padding: 8px 12px !important;
+
+    background: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
+    border-radius: 0 !important;
 
     color: var(--k2-text) !important;
     font-family: var(--k2-font) !important;
@@ -166,16 +183,17 @@ body,
     box-shadow: none !important;
     outline: none !important;
     box-sizing: border-box !important;
-    transition: var(--k2-transition) !important;
 }
 
-/* Text areas / memo fields */
+/* =====================================================
+   TEXT AREAS / MEMO FIELDS
+   ===================================================== */
+
 .theme-entry textarea,
 .theme-entry textarea.SFC,
 .theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea,
 .theme-entry .SourceCode-Forms-Controls-Web-TextArea textarea,
 .theme-entry .input-control textarea {
-    display: block !important;
     width: 100% !important;
     min-height: 90px !important;
     padding: 12px 14px !important;
@@ -196,11 +214,20 @@ body,
     transition: var(--k2-transition) !important;
 }
 
-/* Select/dropdown controls */
+/* Remove wrapper border if it contains textarea, to avoid double border */
+.theme-entry .input-control:has(textarea) {
+    border: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+/* =====================================================
+   SELECT / DROPDOWN
+   ===================================================== */
+
 .theme-entry select,
 .theme-entry select.SFC,
 .theme-entry .input-control select {
-    display: block !important;
     width: 100% !important;
     min-height: 40px !important;
     padding: 8px 12px !important;
@@ -218,52 +245,76 @@ body,
     box-sizing: border-box !important;
 }
 
-/* Placeholder text */
+/* =====================================================
+   WATERMARK / PLACEHOLDER
+   ===================================================== */
+
 .theme-entry input::placeholder,
-.theme-entry textarea::placeholder,
-.theme-entry .watermark,
-.theme-entry .input-control-watermark {
+.theme-entry textarea::placeholder {
     color: var(--k2-placeholder) !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
 }
 
-/* Focus state */
-.theme-entry input[type="text"]:focus,
+.theme-entry .watermark,
+.theme-entry .input-control-watermark,
+.theme-entry input.watermark,
+.theme-entry textarea.watermark {
+    color: var(--k2-placeholder) !important;
+    -webkit-text-fill-color: var(--k2-placeholder) !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+
+/* =====================================================
+   FOCUS STATE
+   ===================================================== */
+
+.theme-entry .input-control:focus-within,
+.theme-entry .text-input:focus-within,
+.theme-entry .SourceCode-Forms-Controls-Web-TextBox:focus-within,
 .theme-entry textarea:focus,
-.theme-entry select:focus,
-.theme-entry .input-control input:focus,
-.theme-entry .input-control textarea:focus,
-.theme-entry .input-control select:focus {
+.theme-entry select:focus {
     border-color: var(--k2-primary) !important;
     box-shadow: 0 0 0 4px var(--k2-primary-focus) !important;
     outline: none !important;
+}
+
+/* Do not double-focus textarea wrappers */
+.theme-entry .input-control:has(textarea):focus-within {
+    border: none !important;
+    box-shadow: none !important;
 }
 
 /* =====================================================
    DATE PICKER
    ===================================================== */
 
-/* Date picker container */
 .theme-entry .calendar-control,
 .theme-entry .date-control,
 .theme-entry .picker-input,
 .theme-entry .input-control.datepicker,
 .theme-entry .input-control.select-box {
+    width: 100% !important;
+    min-height: 40px !important;
     background: #ffffff !important;
-    border: none !important;
+    border: 1px solid var(--k2-border) !important;
+    border-radius: var(--k2-radius) !important;
     box-shadow: none !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
 }
 
-/* Date input itself */
 .theme-entry .calendar-control input,
 .theme-entry .date-control input,
 .theme-entry .input-control.datepicker input,
 .theme-entry .input-control.select-box input {
-    min-height: 40px !important;
+    min-height: 38px !important;
     padding: 8px 44px 8px 12px !important;
 
-    background: #ffffff !important;
-    border: 1px solid var(--k2-border) !important;
-    border-radius: var(--k2-radius) !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
 
     color: var(--k2-text) !important;
     box-shadow: none !important;
@@ -320,7 +371,6 @@ body,
     cursor: pointer !important;
 }
 
-/* Button hover */
 .theme-entry .SourceCode-Forms-Controls-Web-Button:hover,
 .theme-entry a.SourceCode-Forms-Controls-Web-Button:hover,
 .theme-entry button:hover,
@@ -408,16 +458,6 @@ body,
 }
 
 /* =====================================================
-   AI RECOMMENDATION BOX
-   ===================================================== */
-
-.theme-entry [name*="AI Recommendation"],
-.theme-entry [title*="AI Recommendation"],
-.theme-entry .ai-recommendation {
-    min-height: 120px !important;
-}
-
-/* =====================================================
    VALIDATION
    ===================================================== */
 
@@ -456,264 +496,29 @@ body,
         min-height: 120px !important;
     }
 }
-/* =====================================================
-   FINAL CONSISTENCY FIX: SMALL K2 FIELDS AS INPUT BOXES
-   ===================================================== */
-
-/* Style the K2 wrapper that contains small text boxes */
-.theme-entry .input-control.text-input,
-.theme-entry .input-control.text-input.input-control,
-.theme-entry .input-control.control-wrapper,
-.theme-entry .input-control-wrapper,
-.theme-entry .text-input,
-.theme-entry .picker-input,
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox {
-    display: block !important;
-    width: 100% !important;
-    min-height: 40px !important;
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-}
-
-/* Make the actual inner input transparent so only the wrapper border shows */
-.theme-entry .input-control.text-input input,
-.theme-entry .text-input input,
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox input,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox input,
-.theme-entry .input-control-wrapper input {
-    width: 100% !important;
-    min-height: 38px !important;
-    padding: 8px 12px !important;
-    background: transparent !important;
-    border: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-    outline: none !important;
-    color: #1e293b !important;
-    box-sizing: border-box !important;
-}
-
-/* Also target K2 editable cells that contain text inputs */
-.theme-entry td.editor-cell:has(input[type="text"]),
-.theme-entry td.control-cell:has(input[type="text"]) {
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
-    overflow: hidden !important;
-}
-
-/* But do not put borders around label-only cells */
-.theme-entry td.editor-cell:has(label),
-.theme-entry td.control-cell:has(label) {
-    border: none !important;
-    background: transparent !important;
-}
-
-/* Textarea fields: keep them consistent */
-.theme-entry textarea,
-.theme-entry .input-control textarea,
-.theme-entry .SourceCode-Forms-Controls-Web-TextArea,
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextArea {
-    width: 100% !important;
-    min-height: 90px !important;
-    padding: 12px 14px !important;
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
-    outline: none !important;
-    color: #1e293b !important;
-    box-sizing: border-box !important;
-}
-
-/* Date field: same look as normal input */
-.theme-entry .calendar-control,
-.theme-entry .date-control,
-.theme-entry .input-control.datepicker {
-    display: block !important;
-    width: 100% !important;
-    min-height: 40px !important;
-    background: #ffffff !important;
-    border: 1px solid #dbe2ea !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-}
-
-.theme-entry .calendar-control input,
-.theme-entry .date-control input,
-.theme-entry .input-control.datepicker input {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    outline: none !important;
-    padding: 8px 12px !important;
-}
-
-/* Focus effect */
-.theme-entry .input-control:focus-within,
-.theme-entry .text-input:focus-within,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox:focus-within,
-.theme-entry .calendar-control:focus-within,
-.theme-entry .date-control:focus-within,
-.theme-entry textarea:focus {
-    border-color: #2563eb !important;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
-}
 
 /* =====================================================
-   CONSISTENT LIGHT PLACEHOLDER / WATERMARK TEXT
+   CRITICAL FINAL BLOCK:
+   RESPECT K2 VISIBLE = FALSE / HIDDEN CONTROLS
+   Keep this block LAST.
    ===================================================== */
 
-/* Normal HTML placeholders */
-.theme-entry input::placeholder,
-.theme-entry textarea::placeholder {
-    color: #94a3b8 !important;
-    opacity: 1 !important;
-    font-weight: 400 !important;
-}
-
-/* K2 watermark spans/divs inside text boxes */
-.theme-entry .input-control-watermark,
-.theme-entry .watermark,
-.theme-entry .text-input .watermark,
-.theme-entry .input-control .watermark,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox .watermark,
-.theme-entry .SFC.SourceCode-Forms-Controls-Web-TextBox .watermark {
-    color: #94a3b8 !important;
-    opacity: 1 !important;
-    font-weight: 400 !important;
-}
-
-/* K2 text box visible watermark text */
-.theme-entry .input-control input.watermark,
-.theme-entry .text-input input.watermark,
-.theme-entry input.watermark {
-    color: #94a3b8 !important;
-    opacity: 1 !important;
-    font-weight: 400 !important;
-}
-
-/* Readable typed text stays dark */
-.theme-entry .input-control input:not(.watermark),
-.theme-entry .input-control textarea:not(.watermark),
-.theme-entry input[type="text"]:not(.watermark),
-.theme-entry textarea:not(.watermark) {
-    color: #1e293b !important;
-}
-/* =====================================================
-   HARD FIX: K2 WATERMARK TEXT COLOR
-   Makes "Type a value" light in small text boxes too
-   ===================================================== */
-
-/* K2 often applies watermark class directly on the input */
-.theme-entry input.watermark,
-.theme-entry input.input-control-watermark,
-.theme-entry .input-control input.watermark,
-.theme-entry .input-control input.input-control-watermark,
-.theme-entry .text-input input.watermark,
-.theme-entry .text-input input.input-control-watermark {
-    color: #94a3b8 !important;
-    -webkit-text-fill-color: #94a3b8 !important;
-    opacity: 1 !important;
-    font-weight: 400 !important;
-}
-
-/* K2 watermark containers */
-.theme-entry .input-control-watermark,
-.theme-entry .watermark,
-.theme-entry .watermark-text,
-.theme-entry .input-watermark,
-.theme-entry .text-input .input-control-watermark,
-.theme-entry .text-input .watermark,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox .input-control-watermark,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox .watermark {
-    color: #94a3b8 !important;
-    -webkit-text-fill-color: #94a3b8 !important;
-    opacity: 1 !important;
-    font-weight: 400 !important;
-}
-
-/* Native placeholders */
-.theme-entry input::placeholder,
-.theme-entry textarea::placeholder {
-    color: #94a3b8 !important;
-    -webkit-text-fill-color: #94a3b8 !important;
-    opacity: 1 !important;
-    font-weight: 400 !important;
-}
-
-/* If K2 stores "Type a value" as text in empty textboxes, target inactive empty-looking fields */
-.theme-entry input[value="Type a value"],
-.theme-entry input[title="Type a value"],
-.theme-entry input[aria-label="Type a value"] {
-    color: #94a3b8 !important;
-    -webkit-text-fill-color: #94a3b8 !important;
-    opacity: 1 !important;
-    font-weight: 400 !important;
-}
-/* =====================================================
-   MAKE SMALL EMPTY TEXTBOX WATERMARK LOOK LIGHTER
-   Practical K2 fix: applies lighter text to empty/watermark-like input boxes
-   ===================================================== */
-
-/* Lighten K2 small textbox text slightly */
-.theme-entry .input-control input,
-.theme-entry .text-input input,
-.theme-entry .SourceCode-Forms-Controls-Web-TextBox input {
-    color: #64748b !important;
-    -webkit-text-fill-color: #64748b !important;
-}
-
-/* But make filled/readable known values dark again where possible */
-.theme-entry input:not([value="Type a value"]):not(.watermark),
-.theme-entry .input-control input:not([value="Type a value"]):not(.watermark),
-.theme-entry .text-input input:not([value="Type a value"]):not(.watermark) {
-    color: #1e293b !important;
-    -webkit-text-fill-color: #1e293b !important;
-}
-
-/* Keep textareas placeholders light */
-.theme-entry textarea::placeholder,
-.theme-entry textarea.watermark,
-.theme-entry .input-control textarea.watermark {
-    color: #94a3b8 !important;
-    -webkit-text-fill-color: #94a3b8 !important;
-}
-/* =====================================================
-   RESPECT K2 HIDDEN / NOT VISIBLE CONTROLS
-   Must be at the very bottom of the CSS file
-   ===================================================== */
-
+/* Hidden by inline style */
 .theme-entry [style*="display: none"],
 .theme-entry [style*="display:none"],
-.theme-entry .hidden,
-.theme-entry .hide,
-.theme-entry .invisible,
-.theme-entry .not-visible,
-.theme-entry .runtime-hidden,
-.theme-entry .SFC.hidden,
-.theme-entry .input-control.hidden,
-.theme-entry span.hidden,
-.theme-entry div.hidden,
-.theme-entry tr.hidden,
-.theme-entry td.hidden {
+.theme-entry tr[style*="display: none"],
+.theme-entry tr[style*="display:none"],
+.theme-entry td[style*="display: none"],
+.theme-entry td[style*="display:none"],
+.theme-entry div[style*="display: none"],
+.theme-entry div[style*="display:none"],
+.theme-entry span[style*="display: none"],
+.theme-entry span[style*="display:none"] {
     display: none !important;
     visibility: hidden !important;
 }
-/* =====================================================
-   HARD FIX: RESPECT K2 VISIBLE = FALSE
-   Keep this as the LAST block in the CSS file
-   ===================================================== */
 
-/* Hide anything K2 marks hidden by attributes */
+/* Hidden by attributes */
 .theme-entry [hidden],
 .theme-entry [aria-hidden="true"],
 .theme-entry [data-hidden="true"],
@@ -723,7 +528,7 @@ body,
     visibility: hidden !important;
 }
 
-/* Hide common K2 hidden wrapper classes */
+/* Hidden by common K2/classes */
 .theme-entry .hidden,
 .theme-entry .hide,
 .theme-entry .invisible,
@@ -737,41 +542,17 @@ body,
     visibility: hidden !important;
 }
 
-/* If K2 hides parent rows/cells, make sure children do not reappear */
-.theme-entry tr[style*="display: none"],
-.theme-entry td[style*="display: none"],
-.theme-entry div[style*="display: none"],
-.theme-entry span[style*="display: none"],
-.theme-entry tr[style*="display:none"],
-.theme-entry td[style*="display:none"],
-.theme-entry div[style*="display:none"],
-.theme-entry span[style*="display:none"] {
-    display: none !important;
-    visibility: hidden !important;
-}
-
-/* Undo our previous forced display for controls inside hidden containers */
-.theme-entry [hidden] input,
-.theme-entry [hidden] textarea,
-.theme-entry [hidden] select,
-.theme-entry [aria-hidden="true"] input,
-.theme-entry [aria-hidden="true"] textarea,
-.theme-entry [aria-hidden="true"] select,
-.theme-entry [data-visible="false"] input,
-.theme-entry [data-visible="false"] textarea,
-.theme-entry [data-visible="false"] select,
-.theme-entry .hidden input,
-.theme-entry .hidden textarea,
-.theme-entry .hidden select,
-.theme-entry .hide input,
-.theme-entry .hide textarea,
-.theme-entry .hide select,
-.theme-entry .invisible input,
-.theme-entry .invisible textarea,
-.theme-entry .invisible select,
-.theme-entry .control-hidden input,
-.theme-entry .control-hidden textarea,
-.theme-entry .control-hidden select {
+/* Do not allow children of hidden containers to reappear */
+.theme-entry [style*="display: none"] *,
+.theme-entry [style*="display:none"] *,
+.theme-entry [hidden] *,
+.theme-entry [aria-hidden="true"] *,
+.theme-entry [data-visible="false"] *,
+.theme-entry .hidden *,
+.theme-entry .hide *,
+.theme-entry .invisible *,
+.theme-entry .runtime-hidden *,
+.theme-entry .control-hidden * {
     display: none !important;
     visibility: hidden !important;
 }
